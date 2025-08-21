@@ -406,3 +406,38 @@ html, body {
   height: 50px;
   background-color: rgb(42, 147, 252);
 }
+
+/* ================ Media Screen ================ */
+
+@media (max-width: 900px) {
+
+  .graph-row,
+  .rollup-row {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    gap: 20px; /* vertical gap between stacked items */
+  }
+
+  .graph-box,
+  .rollup-box-l,
+  .rollup-box-r {
+    width: 100%;
+    min-width: 0;
+    border-right: none;
+    border-left: none;
+  }
+
+  .wide-box {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .data {
+    width: 98%;
+  }
+
+  .rating_title_text {
+    font-size: 10px;
+  }
+}

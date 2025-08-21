@@ -1420,7 +1420,7 @@ impression_table = go.Figure(data=[go.Table(
         align='center',
         height=30,  # Adjust the height of the header cells
         # line=dict(color='black', width=1),  # Add border to header cells
-        font=dict(size=16, color='white', family='Calibri', weight='bold') 
+        font=dict(size=16, color='white', family='Calibri') 
     ),
     cells=dict(
         values=[df[col] for col in df_impression.columns],

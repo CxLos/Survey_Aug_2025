@@ -1493,7 +1493,7 @@ app.layout = html.Div(
         className='divv', 
         children=[ 
             html.H1(
-                'BMHC Client Review Report', 
+                'BMHC Client Satisfaction Report', 
                 className='title'),
             html.H2( 
                 f'{current_month} {report_year}', 

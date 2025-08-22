@@ -236,22 +236,23 @@ for col in columns_to_order:
 # =========================== Total Reviews ============================ #
 
 total_reviews = len(df)
-print(f'Total Client Reviews {current_month}: ', total_reviews)
+# print(f'Total Client Reviews {current_month}: ', total_reviews)
 
 # --- Missing Reviews --- #
 len_nav = len(df_2)
-print(f'Navigation Visits {current_month}: ', len_nav)
+# print(f'Navigation Visits {current_month}: ', len_nav)
 len_fh = len(df_3)
 # print(f'Findhelp Visits {current_month}: ', len_fh)
 total_nav = len_nav + len_fh
 # print(f'Combined Visits {current_month}: ', total_nav)
-missing_reviews = len_nav - total_reviews
-print(f'Clients didn\'t submit reviews {current_month}: ', missing_reviews)
+
+missing_reviews = total_nav - total_reviews
+# print(f'Clients didn\'t submit reviews {current_month}: ', missing_reviews)
 
 # --- Capture Rate --- # 
-capture_rate = (total_reviews / len_nav) * 100 if missing_reviews > 0 else 100
+capture_rate = (total_reviews / total_nav) * 100 
 capture_rate = round(capture_rate)
-print(f'Capture Rate {current_month}: {capture_rate}%')
+# print(f'Capture Rate {current_month}: {capture_rate}%')
 
 # ------------------------ Health Issue ---------------------------- #
 

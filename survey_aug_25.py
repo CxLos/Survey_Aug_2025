@@ -108,9 +108,9 @@ df_2 = data_2.copy()
 for col in df_2.select_dtypes(include='object').columns:
     df_2[col] = df_2[col].map(lambda x: x.strip() if isinstance(x, str) else x)
 
-df_2['Timestamp'] = pd.to_datetime(df_2['Timestamp'], errors='coerce')
-df_2['Month'] = df_2['Timestamp'].dt.month_name()
-df_2 = df_2[df_2['Timestamp'].dt.month == 8]
+df_2['Date of Activity'] = pd.to_datetime(df_2['Date of Activity'], errors='coerce')
+df_2['Month'] = df_2['Date of Activity'].dt.month_name()
+df_2 = df_2[df_2['Date of Activity'].dt.month == 8]
 
 # ------ Findhelp ------ #
 
@@ -233,24 +233,25 @@ for col in columns_to_order:
 # start_month_idx = (quarter - 1) * 3
 # month_order = all_months[start_month_idx:start_month_idx + 3]
 
-# ------------------------ Total Reviews ---------------------------- #
+# =========================== Total Reviews ============================ #
 
 total_reviews = len(df)
-# print(f'Total Client Reviews {current_month}: ', total_reviews)
+print(f'Total Client Reviews {current_month}: ', total_reviews)
 
-# ------------------------ Missing Reviews ---------------------------- #
-
+# --- Missing Reviews --- #
 len_nav = len(df_2)
-# print(f'Navigation Visits {current_month}: ', len_nav)
-
+print(f'Navigation Visits {current_month}: ', len_nav)
 len_fh = len(df_3)
 # print(f'Findhelp Visits {current_month}: ', len_fh)
-
 total_nav = len_nav + len_fh
 # print(f'Combined Visits {current_month}: ', total_nav)
+missing_reviews = len_nav - total_reviews
+print(f'Clients didn\'t submit reviews {current_month}: ', missing_reviews)
 
-missing_reviews = total_nav - total_reviews
-# print(f'Clients didn\'t submit reviews {current_month}: ', missing_reviews)
+# --- Capture Rate --- # 
+capture_rate = (total_reviews / len_nav) * 100 if missing_reviews > 0 else 100
+capture_rate = round(capture_rate)
+print(f'Capture Rate {current_month}: {capture_rate}%')
 
 # ------------------------ Health Issue ---------------------------- #
 
@@ -1508,47 +1509,15 @@ app.layout = html.Div(
             ),
         ]
     ),
-    
-# ============================ Data Table ========================== # 
-
-# Data Table
-# html.Div(
-#     className='data-row',
-#     children=[
-#         html.Div(
-#             className='graph00',
-#             children=[
-#                 html.Div(
-#                     className='table',
-#                     children=[
-#                         html.H1(
-#                             className='table-title',
-#                             children='Client Review Table'
-#                         )
-#                     ]
-#                 ),
-#                 html.Div(
-#                     className='table2', 
-#                     children=[
-#                         dcc.Graph(
-#                             className='data',
-#                             figure=survey_table
-#                         )
-#                     ]
-#                 )
-#             ]
-#         ),
-#     ]
-# ),
 
 # ============================ Rollups ========================== #
 
-# ROW 1
 html.Div(
     className='rollup-row',
     children=[
+        
         html.Div(
-            className='rollup-box-l',
+            className='rollup-box-tl',
             children=[
                 html.Div(
                     className='title-box',
@@ -1577,7 +1546,7 @@ html.Div(
             ]
         ),
         html.Div(
-            className='rollup-box-r',
+            className='rollup-box-tr',
             children=[
                 html.Div(
                     className='title-box',
@@ -1592,11 +1561,74 @@ html.Div(
                     className='circle-box',
                     children=[
                         html.Div(
-                            className='circle-1',
+                            className='circle-2',
                             children=[
                                 html.H1(
                                 className='rollup-number',
                                 children=[missing_reviews]
+                                ),
+                            ]
+                        )
+                    ],
+                ),
+            ]
+        ),
+    ]
+),
+
+html.Div(
+    className='rollup-row',
+    children=[
+        html.Div(
+            className='rollup-box-bl',
+            children=[
+                html.Div(
+                    className='title-box',
+                    children=[
+                        html.H3(
+                            className='rollup-title',
+                            children=[f'{current_month} Capture Rate']
+                        ),
+                    ]
+                ),
+
+                html.Div(
+                    className='circle-box',
+                    children=[
+                        html.Div(
+                            className='circle-3',
+                            children=[
+                                html.H1(
+                                className='rollup-number-2',
+                                children=[f'{capture_rate}%']
+                                ),
+                            ]
+                        )
+                    ],
+                ),
+            ]
+        ),
+        html.Div(
+            className='rollup-box-br',
+            children=[
+                html.Div(
+                    className='title-box',
+                    children=[
+                        html.H3(
+                            className='rollup-title',
+                            children=[f'Placeholder']
+                        ),
+                    ]
+                ),
+                html.Div(
+                    className='circle-box',
+                    children=[
+                        html.Div(
+                            className='circle-4',
+                            children=[
+                                html.H1(
+                                className='rollup-number',
+                                children=['-']
                                 ),
                             ]
                         )

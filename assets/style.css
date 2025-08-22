@@ -62,7 +62,7 @@ html, body {
   color:black;
   background-color: rgb(197, 197, 197);
   border: 2.3px solid black;
-  border-radius: 3px;
+  border-radius: 5px;
   font-size: 15px;
   font-family: 'Calibri';
   text-decoration: none;
@@ -94,7 +94,7 @@ html, body {
   border-bottom: 2px solid rgb(0, 0, 0);
 }
 
-.rollup-box-l {
+.rollup-box-tl {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -107,10 +107,27 @@ html, body {
   /* margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px; */
 
+  border-right: 2px solid rgb(0, 0, 0);
+}
+
+.rollup-box-tr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  gap:20px;
+  min-width: 0; 
+
+  /* margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px; */
+
+  /* border-left: 2px solid rgb(0, 0, 0); */
   /* border-bottom: 2px solid rgb(0, 0, 0); */
 }
 
-.rollup-box-r {
+.rollup-box-bl {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,12 +135,28 @@ html, body {
   width: 50%;
   height: 100%;
   gap:20px;
-    min-width: 0; 
+  min-width: 0; 
 
   /* margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px; */
 
-  border-left: 2px solid rgb(0, 0, 0);
+  border-right: 2px solid rgb(0, 0, 0);
+}
+
+.rollup-box-br {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  gap:20px;
+  min-width: 0; 
+
+  /* margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px; */
+
+  /* border-left: 2px solid rgb(0, 0, 0); */
   /* border-bottom: 2px solid rgb(0, 0, 0); */
 }
 
@@ -149,13 +182,29 @@ html, body {
   /* margin: 0 auto; */
   margin: 25px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
-
+  font-size: clamp(24px, 4.5vw, 50px);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   /* font-size: 50px; */
-  font-size: clamp(24px, 5vw, 50px);
+
   word-break: break-word;
   overflow-wrap: break-word;
   text-align: center;
+}
+
+.rollup-number {
+  font-size: 70px;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 2px 0px 0px;
+
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.rollup-number-2 {
+  font-size: clamp(24px, 4.5vw, 50px);
+  margin: 0px 0px 0px 0px;
+  padding: 0px 2px 0px 0px;
+
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .circle-box {
@@ -178,7 +227,7 @@ html, body {
   text-align: center;
 
   margin: 0px 0px 0px 0px;
-  padding: 15px 0px 15px 0px;
+  padding: 22px 5px 22px 5px;
 
   border: 15px solid rgb(240, 208, 0);
   border-radius: 100px;
@@ -187,12 +236,52 @@ html, body {
   height: auto; /* Adjust height if needed */
 }
 
-.rollup-number {
-  font-size: 70px;
-  margin: 0px 0px 0px 0px;
-  padding: 0px 2px 0px 0px;
+.circle-2 {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 0px 0px 0px 0px;
+  padding: 10px 8px 10px 8px;
+
+  border: 15px solid rgb(240, 208, 0);
+  border-radius: 100px;
+  background-color: rgb(255, 239, 136);
+  width: 100%; /* Adjust width to ensure it fills the parent */
+  height: auto; /* Adjust height if needed */
+}
+
+.circle-3 {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  margin: 0px 0px 0px 0px;
+  padding: 33px 1px 33px 1px;
+
+  border: 15px solid rgb(240, 208, 0);
+  border-radius: 100px;
+  background-color: rgb(255, 239, 136);
+  width: 100%; /* Adjust width to ensure it fills the parent */
+  height: auto; /* Adjust height if needed */
+}
+
+.circle-4 {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  margin: 0px 0px 0px 0px;
+  padding: 0px 6px 0px 6px;
+
+  border: 15px solid rgb(240, 208, 0);
+  border-radius: 100px;
+  background-color: rgb(255, 239, 136);
+  width: 100%; /* Adjust width to ensure it fills the parent */
+  height: auto; /* Adjust height if needed */
 }
 
 /* ====================== Graphs ======================= */

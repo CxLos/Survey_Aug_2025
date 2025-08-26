@@ -6,7 +6,7 @@ import plotly.express as px
 from datetime import datetime, timedelta
 import os
 import dash
-from dash import dcc, html
+from dash import dcc, html, dash_table
 
 # Google Web Credentials
 import json
@@ -1410,8 +1410,20 @@ impression_pie = px.pie(
 
 # # ========================== Impression DataFrame Table ========================== #
 
+df = df.sort_values('Timestamp', ascending=True)
+
 # New DataFrame for Impression
-df_impression = df[['Impression']].copy()
+df_impression = df[['Timestamp', 'Service',  'Impression']].copy()
+
+# create a display index column and prepare table data/columns
+# reset index to ensure contiguous numbering after any filtering/sorting upstream
+df_indexed = df_impression.reset_index(drop=True).copy()
+# Insert '#' as the first column (1-based row numbers)
+df_indexed.insert(0, '#', df_indexed.index + 1)
+
+# Convert to records for DataTable
+data = df_indexed.to_dict('records')
+columns = [{"name": col, "id": col} for col in df_indexed.columns]
 
 # Engagement Table
 impression_table = go.Figure(data=[go.Table(
@@ -2026,13 +2038,59 @@ html.Div(
         className='data-box',
         children=[
             html.H1(
-                className='table-title-text',
-                children='Client Feedback'
+                className='data-title',
+                children=f'Client Feedback Table'
             ),
-            dcc.Graph(
-                className='data',
-                figure=impression_table
-            )
+            # html.Div(  
+            #     className='table-scroll',
+            #     children=[
+            #         dcc.Graph(
+            #             className='data',
+            #             figure=df_table,
+            #                 # style={'height': '800px'}, 
+            #                 config={'responsive': True}
+            #         )
+            #     ]
+            # )
+            
+            dash_table.DataTable(
+                id='applications-table',
+                data=data,
+                columns=columns,
+                page_size=14,
+                sort_action='native',
+                filter_action='native',
+                row_selectable='multi',
+                style_table={
+                    'overflowX': 'auto',
+                    # 'border': '3px solid #000',
+                    # 'borderRadius': '0px'
+                },
+                style_cell={
+                    'textAlign': 'left',
+                    'minWidth': '100px', 
+                    'whiteSpace': 'normal'
+                },
+                style_header={
+                    'textAlign': 'center', 
+                    'fontWeight': 'bold',
+                    'backgroundColor': '#34A853', 
+                    'color': 'white'
+                },
+                style_data={
+                    'whiteSpace': 'normal',
+                    'height': 'auto',
+                },
+                style_cell_conditional=[
+                    # make the index column narrow and centered
+                    {'if': {'column_id': '#'},
+                    'width': '20px', 'minWidth': '60px', 'maxWidth': '60px', 'textAlign': 'center'},
+                    {'if': {'column_id': 'Timestamp'},
+                    'width': '170px', 'minWidth': '100px', 'maxWidth': '200px', 'textAlign': 'center'},
+                    {'if': {'column_id': 'Impression'},
+                    'width': '650px', 'minWidth': '650px', 'maxWidth': '650px', 'textAlign': 'left'},
+                ]
+            ),
         ]
     ),
 ])

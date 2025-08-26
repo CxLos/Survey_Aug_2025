@@ -354,48 +354,58 @@ html, body {
 
 /* ================ Data Table ================ */
 
-.data-box {
-  display: flex;
+.data-row {
+  display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex:1;
+  gap: 5vw;
+  flex-grow: 1;
 
-  width: 100%;
-  /* height: auto; */
-  height: 80vh;
-  /* height: 100%; */
-  margin: 50px 0px 0px 0px;
+  margin: 20px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
-
-  /* border-bottom: 2px solid rgb(0, 0, 0); */
-}
-
-.table-title-text {
-  /* font-size: 35px; */
-  font-size: clamp(24px, 5vw, 50px);
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: rgb(38, 38, 38);
-  margin: 0px 0px -70px 0px;
-  padding: 0px 0px 0px 0px;
-}
-
-.data {
-  margin: 0px 0px 0px 0px; /* Adjust the margin as needed */
-  padding: 0px 0px 0px 0px; /* Reduced padding for tighter border */
-  width: 45%;
-  height: 100%;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  white-space: nowrap; /* Prevent line breaks */
-}
-
-/* .svg-container {
-  margin: 0;
-  padding: 0;
   width: 100%;
   height: auto;
-  overflow: hidden;
-} */
+  border-top: 2px solid rgb(0, 0, 0);
+  border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+.data-box {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:3vh;
+
+  margin: 0px 0px 0px 0px;
+  /* margin: 0 10px;  */
+  padding: 0px 0px 0px 0px;
+  width: 100%;
+  height: auto;
+  /* border-left: 2px solid rgb(0, 0, 0); */
+}
+
+.data-title {
+  font-size: clamp(20px, 2.5vw, 50px);
+  color: rgb(38, 38, 38);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 5px 0px 0px 0px;
+  padding: 20px 0px 0px 0px;
+}
+
+#applications-table {
+  box-sizing: border-box; 
+  margin: 0px 0px 0px 0px; /* Adjust the margin as needed */
+  padding: 0px 0px 20px 0px; /* Reduced padding for tighter border */
+  width: 90%;
+  /* height: 56vh; */
+  height: auto;
+  /* height: clamp(300px, 60vh, 700px); min-height: 250px;  */
+  /* max-height: 800px; */
+  overflow-x: auto; 
+  /* white-space: nowrap; */
+  /* visibility:collapse; */
+}
 
 /* ================ Rating Row ==================== */
 
